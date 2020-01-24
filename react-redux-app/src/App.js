@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+
+import RestroomList from './components/RestroomList';
+import { fetchRestrooms } from './actions';
+
+import './App.css';
+import { connect } from 'react-redux';
+
+const App = props => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Pee Near Me</h1>
+        <input
+          className='search-input'
+          type='text'
+          name='searchTerm'
+          placeholder='🔎 City and or State'
+          value={searchTerm}
+          onChange={handleChange}
+        />
+        <button onClick={() => props.fetchRestrooms(searchTerm)}>Search!</button>
       </header>
+      <section>
+        <RestroomList />
+      </section>
+      <footer>
+        <p>Data from <a href='https://www.refugerestrooms.org/about'>REFUGE Restrooms</a></p>
+      </footer>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state: state
+  }
+}
+
+export default connect(mapStateToProps, { fetchRestrooms })(App);
