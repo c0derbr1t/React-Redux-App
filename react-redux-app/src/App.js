@@ -7,6 +7,8 @@ import { fetchRestrooms } from './actions';
 import './App.css';
 import { connect } from 'react-redux';
 
+import { Header, Input, Button, Section, Footer } from './components/Styles';
+
 const App = props => {
   const [searchTerm, setSearchTerm] = useState('');
   const handleChange = e => {
@@ -15,9 +17,9 @@ const App = props => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Pee Near Me</h1>
-        <input
+      <Header className="App-header">
+        <h1>Where To Pee Near Me</h1>
+        <Input
           className='search-input'
           type='text'
           name='searchTerm'
@@ -25,14 +27,14 @@ const App = props => {
           value={searchTerm}
           onChange={handleChange}
         />
-        <button onClick={() => props.fetchRestrooms(searchTerm)}>Search!</button>
-      </header>
-      <section>
+        <Button onClick={() => props.fetchRestrooms(searchTerm)}>Search!</Button>
+      </Header>
+      <Section>
         <RestroomList />
-      </section>
-      <footer>
+      </Section>
+      <Footer>
         <p>Data from <a href='https://www.refugerestrooms.org/about'>REFUGE Restrooms</a></p>
-      </footer>
+      </Footer>
     </div>
   );
 }

@@ -5,28 +5,28 @@ import transgender_black from '../icons/transgender_black.svg';
 import disabled from '../icons/disabled.svg';
 import disabled_black from '../icons/disabled_black.svg';
 
+import { Outer, Left, Right, Name, Address, AddressH4, Icons } from './Styles';
+
 const RestroomDetail = props => {
     
     return (
-        <div>
-            <div>
-                <div>
+        <Outer>
+            <Left>
+                <Name>
                     <h3>{props.restroom.name}</h3>
-                </div>
-                <div>
-                    <h4>{props.restroom.street}</h4>
-                    <h4>{props.restroom.city}, {props.restroom.state}</h4>
-                </div>
-                <div>
+                </Name>
+                <Address>
+                    <AddressH4>{props.restroom.street}</AddressH4>
+                    <AddressH4>{props.restroom.city}, {props.restroom.state}</AddressH4>
+                </Address>
                     <div>
-                        {props.restroom.accessible && <img src={disabled} alt="accessible" /> }
-                        {!props.restroom.accessible && <img src={disabled_black} alt="not accessible" />}
-                        {props.restroom.unisex && <img src={transgender} alt="unisex" />}
-                        {!props.restroom.unisex && <img src={transgender_black} alt="not unisex" />} 
+                        {props.restroom.accessible && <Icons src={disabled} alt="accessible" /> }
+                        {!props.restroom.accessible && <Icons src={disabled_black} alt="not accessible" />}
+                        {props.restroom.unisex && <Icons src={transgender} alt="unisex" />}
+                        {!props.restroom.unisex && <Icons src={transgender_black} alt="not unisex" />} 
                     </div>
-                </div>
-            </div>
-            <div>
+            </Left>
+            <Right>
                 <div>
                     <h4>Directions:</h4>
                     {props.restroom.directions !== "" && <p>{props.restroom.directions}</p>}
@@ -37,8 +37,8 @@ const RestroomDetail = props => {
                     {props.restroom.comment !== "" && <p>{props.restroom.comment}</p>}
                     {props.restroom.comment === "" && <p>No comment for this location.</p>}
                 </div>
-            </div>
-        </div>
+            </Right>
+        </Outer>
     )
 }
 

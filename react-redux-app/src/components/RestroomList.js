@@ -7,28 +7,32 @@ import { fetchRestrooms } from '../actions';
 
 import RestroomDetail from './RestroomDetail';
 
+import { Span, Quote, Container } from './Styles';
+
 
 const RestroomList = props => {
     return (
         <div>
             {!props.restrooms && !props.isLoading && (
                 <div>
-                    <h3>Every person should have the right to use the restroom they need to, regardless of gender identity. Enter a State or City and State above to find a safe place to pee near you.</h3>
-                    <h4><span>From <a href='https://www.refugerestrooms.org/about'>REFUGE Restrooms</a>:</span> "One of the biggest battlefields upon which the fight for transgender rights is taking place daily are restrooms. It seems that every other week a transgender child is made the center of a national news story because they used the restroom assigned to the gender they identify with. Obviously, we believe that every transgender person should have the right to use the restroom they want to. However, we also realize that despite legislative victories in recent years regarding restroom usage, many transgender individuals still face both verbal and physical harassment simply for using the restroom. Nobody should have to face that - and that is why we created REFUGE."</h4>
+                    <h3>Every person should have the right to use the restroom they need to, regardless of gender identity. Enter a City and/or State (or even part of a place!) above to find up to 50 safe places to pee near you.</h3>
+                    <Quote><Span>From <a href='https://www.refugerestrooms.org/about'>REFUGE Restrooms</a>:</Span> "One of the biggest battlefields upon which the fight for transgender rights is taking place daily are restrooms. It seems that every other week a transgender child is made the center of a national news story because they used the restroom assigned to the gender they identify with. Obviously, we believe that every transgender person should have the right to use the restroom they want to. However, we also realize that despite legislative victories in recent years regarding restroom usage, many transgender individuals still face both verbal and physical harassment simply for using the restroom. Nobody should have to face that - and that is why we created REFUGE."</Quote>
                 </div>
             )}
             {props.isLoading && (
                 <Loader
-                type="Puff"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                timeout={3000} //3 secs
+                type="Circles"
+                color="#e6c301"
+                height={150}
+                width={150}
+                // timeout={3000} //3 secs
               /> 
             )}
-            {props.restrooms && !props.isLoading && props.restrooms.map(item => (
-                <RestroomDetail key={item.id} restroom={item} />
-            ))}
+            <Container>
+                {props.restrooms && !props.isLoading && props.restrooms.map(item => (
+                        <RestroomDetail key={item.id} restroom={item} />
+                ))}
+            </Container>
         </div>
     )
 }
