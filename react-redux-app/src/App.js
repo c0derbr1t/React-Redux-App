@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 import RestroomList from './components/RestroomList';
 import { fetchRestrooms } from './actions';
 
@@ -23,11 +22,11 @@ const App = props => {
           className='search-input'
           type='text'
           name='searchTerm'
-          placeholder='🔎 City and or State'
+          placeholder='🔎 Search '
           value={searchTerm}
           onChange={handleChange}
         />
-        <Button onClick={() => props.fetchRestrooms(searchTerm)}>Search!</Button>
+        <Button onClick={() => props.fetchRestrooms(searchTerm)}> 🧻 </Button>
       </Header>
       <Section>
         <RestroomList />
